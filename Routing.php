@@ -11,13 +11,13 @@ Route::get('/{controller}/{action}',function($controller,$action,Request $reques
     $className = "App\Http\Controllers\\$controller"."Controller";
   
     if(!class_exists($className)){
-       return "CONTROLLER $controller UNDEFINED!";
+       throw new Symfony\Component\HttpKernel\Exception\HttpException(404,"CONTROLLER $controller UNDEFINED!");
     }
     $classInstance = new $className();
     
     $actionName = $action."_get";
     if(!method_exists($classInstance,$actionName)){
-        return "ACTION $action UNDEFINED!";
+        throw new Symfony\Component\HttpKernel\Exception\HttpException(404,"ACTION $action UNDEFINED!");
     }
     return $classInstance->$actionName($request);
 });
@@ -26,13 +26,13 @@ Route::post('/{controller}/{action}',function($controller,$action,Request $reque
     $className = "App\Http\Controllers\\$controller"."Controller";
   
     if(!class_exists($className)){
-       return "CONTROLLER $controller UNDEFINED!";
+       throw new Symfony\Component\HttpKernel\Exception\HttpException(404,"CONTROLLER $controller UNDEFINED!");
     }
     $classInstance = new $className();
     
     $actionName = $action."_post";
     if(!method_exists($classInstance,$actionName)){
-        return "ACTION $action UNDEFINED!";
+        throw new Symfony\Component\HttpKernel\Exception\HttpException(404,"ACTION $action UNDEFINED!");
     }
     return $classInstance->$actionName($request);
 });
