@@ -7,6 +7,7 @@ Convention for browser Routes:
 -going to "http://domain/students/grades" will use the grades_get() function from the class studentsController(notice match casing)
 */
 
+<?php
 Route::get('/{controller}/{action}',function($controller,$action,Request $request){
     $className = "App\Http\Controllers\\$controller"."Controller";
   
