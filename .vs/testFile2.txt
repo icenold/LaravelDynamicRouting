@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 aaaasdfffffffffffffffff
 asdf
 
 23232323
+=======
+asdfsadfaaaasdfffffffffffffffff
+asdf
+>>>>>>> parent of 767a4d4... Revert "Test"
