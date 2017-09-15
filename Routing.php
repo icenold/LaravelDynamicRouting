@@ -12,32 +12,21 @@ Convention for browser Routes:
 
 
 <?php
-Route::get('/{controller}/{action}',function($controller,$action,Request $request){
+Route::any('/{controller}/{action}',function($controller,$action,Illuminate\Http\Request $request){
     $className = "App\Http\Controllers\\$controller"."Controller";
   
     if(!class_exists($className)){
        throw new Symfony\Component\HttpKernel\Exception\HttpException(404,"CONTROLLER $controller UNDEFINED!");
     }
+
     $classInstance = new $className();
-    
-    $actionName = $action."_get";
+    $method = $request->method();
+    $actionName = $action."_".strtolower($method);
+
     if(!method_exists($classInstance,$actionName)){
         throw new Symfony\Component\HttpKernel\Exception\HttpException(404,"ACTION $action UNDEFINED!");
     }
     return $classInstance->$actionName($request);
 });
 
-Route::post('/{controller}/{action}',function($controller,$action,Request $request){
-    $className = "App\Http\Controllers\\$controller"."Controller";
-  
-    if(!class_exists($className)){
-       throw new Symfony\Component\HttpKernel\Exception\HttpException(404,"CONTROLLER $controller UNDEFINED!");
-    }
-    $classInstance = new $className();
-    
-    $actionName = $action."_post";
-    if(!method_exists($classInstance,$actionName)){
-        throw new Symfony\Component\HttpKernel\Exception\HttpException(404,"ACTION $action UNDEFINED!");
-    }
-    return $classInstance->$actionName($request);
-});
+
