@@ -41,7 +41,7 @@ Route::get('/{controller}',function($controller,Illuminate\Http\Request $request
     if(!method_exists($classInstance,'index')){
         throw new Symfony\Component\HttpKernel\Exception\HttpException(404,"METHOD/ACTION 'index' is UNDEFINED on class $className");
     }
-    return $classInstance->'index'($request);
+    return $classInstance->index($request);
 });
 
 
