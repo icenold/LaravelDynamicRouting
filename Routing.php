@@ -24,7 +24,7 @@ Route::any('/{controller}/{action}',function($controller,$action,Illuminate\Http
     $actionName = $action."_".strtolower($method);
 
     if(!method_exists($classInstance,$actionName)){
-        throw new Symfony\Component\HttpKernel\Exception\HttpException(404,"METHOD or ACTION '$action' is UNDEFINED on class $className");
+        throw new Symfony\Component\HttpKernel\Exception\HttpException(404,"METHOD or ACTION '$actionName' is UNDEFINED on class $className");
     }
     return $classInstance->$actionName($request);
 });
