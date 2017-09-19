@@ -24,7 +24,7 @@ Route::any('/{controller}/{action}',function($controller,$action,Illuminate\Http
     $actionName = $action."_".strtolower($method);
 
     if(!method_exists($classInstance,$actionName)){
-        throw new Symfony\Component\HttpKernel\Exception\HttpException(404,"METHOD/ACTION $action is UNDEFINED on class $className");
+        throw new Symfony\Component\HttpKernel\Exception\HttpException(404,"METHOD or ACTION '$action' is UNDEFINED on class $className");
     }
     return $classInstance->$actionName($request);
 });
@@ -39,7 +39,7 @@ Route::get('/{controller}',function($controller,Illuminate\Http\Request $request
     $classInstance = new $className();
 
     if(!method_exists($classInstance,'index')){
-        throw new Symfony\Component\HttpKernel\Exception\HttpException(404,"METHOD/ACTION 'index' is UNDEFINED on class $className");
+        throw new Symfony\Component\HttpKernel\Exception\HttpException(404,"METHOD or ACTION 'index' is UNDEFINED on class $className");
     }
     return $classInstance->index($request);
 });
