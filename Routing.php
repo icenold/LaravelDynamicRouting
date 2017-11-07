@@ -2,7 +2,6 @@
 Convention for controller Names:
 -
 -
--
 -Every controller should end with the word "Controller"(case sensitive) e.g: 'PersonController','StudentController' 
 
 Convention for browser Routes:   
